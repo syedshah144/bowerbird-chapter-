@@ -140,7 +140,7 @@ fn client(reach: Reach) -> reqwest::ClientBuilder {
         Reach::Any => builder,
         Reach::Public => {
             builder
-                .dns_resolver(PublicOnly)
+                .dns_resolver(PublicOnly.into())
                 .redirect(reqwest::redirect::Policy::custom(|attempt| {
                     if attempt.previous().len() >= 10 {
                         attempt.error("too many redirects")
